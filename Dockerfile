@@ -1,0 +1,15 @@
+FROM eclipse-temurin:21.0.2_13-jdk-alpine
+
+MAINTAINER Kevin S. Clarke - ksclarke@ksclarke.io
+
+RUN apk add --no-cache busybox-extras bash
+
+RUN addgroup -S jpv3 && adduser -S jpv3 -G jpv3 -s bash
+
+COPY --chown=jpv3:jpv3 --chmod=0700 jpv3.cgi /var/www/cgi-bin/jpv3.cgi
+COPY --chown=jpv3:jpv3 --chmod=0644 jpv3.jar /var/www/jpv3.jar
+COPY --chown=jpv3:jpv3 --chmod=0644 imports.jsh /var/www/imports.jsh
+
+EXPOSE 80
+
+CMD [ "httpd", "-v", "-f", "-u", "jpv3", "-h", "/var/www" ]
