@@ -13,4 +13,5 @@ COPY --chown=jpv3:jpv3 --chmod=0644 imports.jsh /var/www/imports.jsh
 EXPOSE 80
 
 USER jpv3
+
 CMD [ "httpd", "-v", "-f", "-u", "jpv3", "-h", "/var/www" ]
