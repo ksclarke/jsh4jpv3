@@ -1,4 +1,4 @@
-name: TaggedPush
+name: Docker Push
 
 on:
   release:
