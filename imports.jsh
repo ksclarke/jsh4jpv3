@@ -1,4 +1,5 @@
 import static info.freelibrary.iiif.presentation.v3.properties.MediaType.IMAGE_JPEG;
+import static info.freelibrary.iiif.presentation.v3.properties.behaviors.ManifestBehavior.PAGED;
 import static info.freelibrary.iiif.presentation.v3.services.ImageService3.Profile.LEVEL_ONE;
 
 import info.freelibrary.iiif.presentation.v3.AnnotationPage;
