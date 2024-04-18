@@ -19,3 +19,7 @@ import info.freelibrary.iiif.presentation.v3.properties.RequiredStatement;
 import info.freelibrary.iiif.presentation.v3.properties.Summary;
 import info.freelibrary.iiif.presentation.v3.properties.Value;
 import info.freelibrary.iiif.presentation.v3.services.ImageService3;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
