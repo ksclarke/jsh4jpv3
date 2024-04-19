@@ -16,32 +16,22 @@ if [ "$REQUEST_METHOD" = "POST" ]; then
         read -n $CONTENT_LENGTH POST_DATA <&0
 
         TMP_FILE=`mktemp`
-        CODE_KEY_FOUND=0
+        CODE_DELIMETER="="
 
-        IFS='&' read -r -a PAIRS <<< "$POST_DATA"
+        # Parse the raw form submission
+        DELIMITED_DATA="${POST_DATA#*"$CODE_DELIMETER"}"
+        ENCODED_DATA="${DELIMITED_DATA//+/ }"
+        DECODED_DATA=$(printf '%b' "${ENCODED_DATA//%/\\x}")
 
-        for PAIR in "${PAIRS[@]}"; do
-          KEY="${PAIR%%=*}"
-          VALUE="${PAIR#*=}"
-          KEY=$(echo -e "${KEY//%/\\x}")
-          VALUE=$(echo -e "${VALUE//%/\\x}")
+        # Write code to a file that we can run through JShell
+        echo "$DECODED_DATA" >> $TMP_FILE
+        echo "/exit" >> $TMP_FILE
 
-          if [ "$KEY" = "code" ]; then
-            CODE_KEY_FOUND=1
+        # We redirect stderr because we want to display those, too
+        /usr/bin/env jshell --startup ../imports.jsh -q --class-path ../jpv3.jar $TMP_FILE 2>&1
 
-            echo "${VALUE//+/$' '}" >> $TMP_FILE
-            echo "/exit" >> $TMP_FILE
-
-            # We redirect stderr because we want to display those, too
-            /usr/bin/env jshell --startup ../imports.jsh -q --class-path ../jpv3.jar $TMP_FILE 2>&1
-          fi
-        done
-
+        # Clean up after ourselves
         rm $TMP_FILE
-
-        if [ "$CODE_KEY_FOUND" -ne 1 ]; then
-          echo "Error: No code field name was found"
-        fi
     else
       echo "Error: No code was submitted"
     fi
