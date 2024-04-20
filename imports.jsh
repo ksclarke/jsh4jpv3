@@ -1,4 +1,6 @@
 import static info.freelibrary.iiif.presentation.v3.properties.MediaType.IMAGE_JPEG;
+import static info.freelibrary.iiif.presentation.v3.properties.ViewingDirection.RIGHT_TO_LEFT;
+import static info.freelibrary.iiif.presentation.v3.properties.ViewingDirection.TOP_TO_BOTTOM;
 import static info.freelibrary.iiif.presentation.v3.properties.behaviors.ManifestBehavior.PAGED;
 import static info.freelibrary.iiif.presentation.v3.services.ImageService3.Profile.LEVEL_ONE;
 
