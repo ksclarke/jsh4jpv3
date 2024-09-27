@@ -43,8 +43,6 @@
   </developers>
 
   <properties>
-    <revision>0.0.0-SNAPSHOT</revision>
-
     <!-- Dependency versions -->
     <microhttp.version>0.11</microhttp.version>
     <jpv3.version>0.0.0-SNAPSHOT</jpv3.version>
@@ -65,7 +63,7 @@
 
     <!-- Skip the requirement that none of the dependencies are snapshot versions -->
     <enforcer.skip>true</enforcer.skip>
-    
+
     <!-- The default logging level for the server. -->
     <logLevel>ERROR</logLevel>
   </properties>
@@ -98,12 +96,12 @@
   <build>
     <resources>
       <resource>
-            <directory>src/main/resources</directory>
-            <filtering>true</filtering>
-            <includes>
-                <include>**/logback.xml</include>
-            </includes>
-        </resource>
+        <directory>src/main/resources</directory>
+        <filtering>true</filtering>
+        <includes>
+          <include>**/logback.xml</include>
+        </includes>
+      </resource>
     </resources>
     <plugins>
       <plugin>
@@ -342,17 +340,18 @@
     </plugins>
   </build>
 
-  <!-- The parent project still uses the older repo locations; new projects use the below -->
-  <distributionManagement>
-    <snapshotRepository>
-      <id>ossrh</id>
-      <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
-    </snapshotRepository>
+  <repositories>
     <repository>
-      <id>ossrh</id>
-      <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+      <id>ossrh-snapshots</id>
+      <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+      <releases>
+        <enabled>false</enabled>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
     </repository>
-  </distributionManagement>
+  </repositories>
 
   <parent>
     <artifactId>freelib-parent</artifactId>

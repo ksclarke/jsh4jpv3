@@ -1,9 +1,8 @@
 ## jsh4jpv3
 
 A quick and dirty REPL for JPv3's IIIF Cookbook recipes. It's definitely not scalable and probably not very safe, but
-it's also not very important.
-
-It's a self-contained, experimental, scratch space that can be restarted with a clean slate as needed.
+it's also not very important. It's a self-contained, experimental, scratch space that can be restarted with a clean
+slate as needed.
 
 ### Contact
 
