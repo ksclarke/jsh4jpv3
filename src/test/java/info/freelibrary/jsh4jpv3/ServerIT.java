@@ -112,7 +112,7 @@ class ServerIT {
         final CompletableFuture<HttpResponse<String>> future = myHttpClient.sendAsync(request.build(), BODY_HANDLER);
 
         future.thenAccept((ThrowingConsumer<HttpResponse<String>>) response -> {
-            assertEquals(Files.readString(Path.of("src/test/resources/manifest.json"), UTF_8), response.body());
+            assertEquals(Files.readString(Path.of("src/test/resources/manifest.json"), UTF_8).trim(), response.body());
         });
 
         // Block until the response arrives
